@@ -1,0 +1,300 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JhonnyLee | JhonnyLee</title><meta name="author" content="JhonnyLee"><meta name="copyright" content="JhonnyLee"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="@[TOC](计算机网络原理笔记 第四章 传输层) 5.1传输层的两个协议5.1.1 TCP和UDP的应用场景 网络中的计算机通信无外乎有以下两种情况： 1.要发送的内容多，需要将发送的内容分成多个数据包发送。 2.要发送的内容少，一个数据包就能发送全部内容。  针对这两种情况，在传输层有两个协议，TCP（TransmissionControl Protocol 即传输控制协议）和UDP（User">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JhonnyLee">
+<meta property="og:url" content="http://blog.jhonnylee.com/2020/12/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0%20%20%E7%B2%BE%E6%95%B4%E7%90%86%20%20%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E4%BC%A0%E8%BE%93%E5%B1%82/index.html">
+<meta property="og:site_name" content="JhonnyLee">
+<meta property="og:description" content="@[TOC](计算机网络原理笔记 第四章 传输层) 5.1传输层的两个协议5.1.1 TCP和UDP的应用场景 网络中的计算机通信无外乎有以下两种情况： 1.要发送的内容多，需要将发送的内容分成多个数据包发送。 2.要发送的内容少，一个数据包就能发送全部内容。  针对这两种情况，在传输层有两个协议，TCP（TransmissionControl Protocol 即传输控制协议）和UDP（User">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2020-12-19T00:22:11.705Z">
+<meta property="article:modified_time" content="2020-12-19T00:19:46.705Z">
+<meta property="article:author" content="JhonnyLee">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://blog.jhonnylee.com/2020/12/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0%20%20%E7%B2%BE%E6%95%B4%E7%90%86%20%20%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E4%BC%A0%E8%BE%93%E5%B1%82/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-12-19 08:19:46'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">JhonnyLee</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">无题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-12-19T00:22:11.705Z" title="发表于 2020-12-19 08:22:11">2020-12-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-12-19T00:19:46.705Z" title="更新于 2020-12-19 08:19:46">2020-12-19</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>@[TOC](计算机网络原理笔记 第四章 传输层)</p>
+<h1 id="5-1传输层的两个协议"><a href="#5-1传输层的两个协议" class="headerlink" title="5.1传输层的两个协议"></a>5.1传输层的两个协议</h1><h2 id="5-1-1-TCP和UDP的应用场景"><a href="#5-1-1-TCP和UDP的应用场景" class="headerlink" title="5.1.1 TCP和UDP的应用场景"></a>5.1.1 TCP和UDP的应用场景</h2><ul>
+<li><p>网络中的计算机通信无外乎有以下两种情况：<br> 1.要发送的内容多，需要将发送的内容分成多个数据包发送。<br> 2.要发送的内容少，一个数据包就能发送全部内容。</p>
+</li>
+<li><p>针对这两种情况，在传输层有两个协议，TCP（Transmission<br>Control Protocol 即传输控制协议）和UDP（User Datagram<br>Protocol即用户数据报协议）。</p>
+<h2 id="5-1-2-传输层协议和应用层协议之间的关系"><a href="#5-1-2-传输层协议和应用层协议之间的关系" class="headerlink" title="5.1.2 传输层协议和应用层协议之间的关系"></a>5.1.2 传输层协议和应用层协议之间的关系</h2></li>
+<li><p>应用层协议很多，传输层就两个协议，如何使用传输层两个协议<br>标识应用层协议呢？</p>
+</li>
+<li><p>传输层协议加一个端口号来标识一个应用层协议，展示了传输层<br>协议和应用层协议之间的关系。<br><img src="https://img-blog.csdnimg.cn/20200518103742530.png" alt="在这里插入图片描述"></p>
+</li>
+</ul>
+<p><strong>- 一些常见的应用层协议和传输层协议，以及它们之间的关系。</strong></p>
+<ul>
+<li><p>HTTP默认使用TCP的80端口标识。</p>
+</li>
+<li><p> FTP默认使用TCP的21端口标识。</p>
+</li>
+<li><p> SMTP默认使用TCP的 25端口标识。</p>
+</li>
+<li><p> POP3默认使用TCP的110端口。</p>
+</li>
+<li><p>HTTPS默认使用TCP的443端口。</p>
+</li>
+<li><p>DNS使用UDP的53端口。</p>
+</li>
+<li><p>远程桌面协议（RDP）默认使用TCP的3389端口。</p>
+</li>
+<li><p>Telnet使用TCP的23端口。</p>
+</li>
+<li><p> Windows访问共享资源使用TCP的445端口。</p>
+</li>
+<li><p>微软SQL数据库默认使用TCP的1433端口。</p>
+</li>
+<li><p>mySQL数据库默认使用TCP的3306端口。</p>
+<h2 id="5-1-3-服务和端口之间的关系"><a href="#5-1-3-服务和端口之间的关系" class="headerlink" title="5.1.3 服务和端口之间的关系"></a>5.1.3 服务和端口之间的关系</h2></li>
+<li><p>Windows和Linux操作系统有些服务为本地计算机提供服务，有些服务为网络中的计算机提供服务。</p>
+</li>
+<li><p>为网络中计算机提供服务的服务，一旦启动就会使用TCP或UDP的某个端口侦听客户端的请求。<br><img src="https://img-blog.csdnimg.cn/20200518104042526.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200518104127288.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200518104204607.png" alt="在这里插入图片描述"></p>
+</li>
+</ul>
+<h1 id="5-2-用户数据报协议-UDP"><a href="#5-2-用户数据报协议-UDP" class="headerlink" title="5.2 用户数据报协议 UDP"></a>5.2 用户数据报协议 UDP</h1><h2 id="5-2-1-UDP-协议的特点"><a href="#5-2-1-UDP-协议的特点" class="headerlink" title="5.2.1 UDP 协议的特点"></a>5.2.1 UDP 协议的特点</h2><ul>
+<li>（1）UDP是无连接的，即发送数据之前不需要建立连接（当然发送数据结束时也没有连接可释放），因此减少了开销和发送数据之前的时延。</li>
+<li>（2）UDP使用尽最大努力交付，即不保证可靠交付，因此主机不需要维持复杂的连接状态表（这里面有许多参数），通信的两端不用保持连接，因此节省系统资源。</li>
+<li>（3）UDP是面向报文的，发送方的UDP对应用程序交下来的报文，在添加首部后就向下交付给网络层。UDP对应用层交下来的报文，既不合并，也不拆分，而是保留这些报文的边界。<br><img src="https://img-blog.csdnimg.cn/20200518104419283.png" alt="在这里插入图片描述"></li>
+<li>（4）UDP没有拥塞控制，因此网络出现的拥塞不会使源主机的发<br>送速率降低。这对某些实时应用是很重要的。</li>
+<li>（5）UDP支持一对一、一对多、多对一和多对多的交互通信。</li>
+<li>（6）UDP的首部开销小，只有8个字节，比TCP的20个字节的首部要短。<h2 id="5-2-2-UDP-的首部格式"><a href="#5-2-2-UDP-的首部格式" class="headerlink" title="5.2.2 UDP 的首部格式"></a>5.2.2 UDP 的首部格式</h2><img src="https://img-blog.csdnimg.cn/20200518104547497.png" alt="在这里插入图片描述"></li>
+<li>UDP的首部包括四个字段，源端口、目标端口、长度和校验和，每个字段的长度是两个字节。</li>
+<li>伪首部包括：源地址、目的地址、UDP数据长度、协议类型（0x11），协议类型就一个字节，但需要补一个字节的0x0，构成12个字节。<br><img src="https://img-blog.csdnimg.cn/20200518104644246.png" alt="在这里插入图片描述"></li>
+</ul>
+<p><strong>计算UDP检验和的例子</strong><br><img src="https://img-blog.csdnimg.cn/20200518104736169.png" alt="在这里插入图片描述"></p>
+<h1 id="5-3传输控制协议-TCP"><a href="#5-3传输控制协议-TCP" class="headerlink" title="5.3传输控制协议 TCP"></a>5.3传输控制协议 TCP</h1><h2 id="5-3-1-TCP-协议主要的特点"><a href="#5-3-1-TCP-协议主要的特点" class="headerlink" title="5.3.1 TCP 协议主要的特点"></a>5.3.1 TCP 协议主要的特点</h2><ul>
+<li><p>（1）TCP是面向连接的传输层协议。这就是说，应用程序在使用TCP协议之前，必须 先建立TCP连接。在传送数据完毕后，必须释放已经建立的TCP连接。这就是说，应用 进程之间的通信好像在“打电话”：通话前要先拨号建立连接，通话结束后要挂机释放 连接。</p>
+</li>
+<li><p>（2）每一条TCP连接只能有两个端点（endpoint），每一条TCP连接只能是点对点的 （一对一）。</p>
+</li>
+<li><p>（3）TCP提供可靠交付的服务。也就是说，通过TCP连接传送的数据，无差错、不丢 失、不重复、且按序发送。</p>
+</li>
+<li><p>（4）TCP提供全双工通信。TCP允许通信双方的应用进程在任何时候都能发送数据。 TCP连接的两端都设有发送缓存和接收缓存，用来临时存放双向通信的数据。在发送时， 应用程序把数据传送给TCP的缓存后，就可以做自己的事，而TCP在合适的时候把数据 发送出去。在接收时，TCP把收到的数据放入缓存，上层的应用进程在合适的时候读取 缓存中的数据。</p>
+</li>
+<li><p>（5）面向字节流。TCP中的“流”（steam）指的是流入到进程或从进程流出的字节序列。<br><img src="https://img-blog.csdnimg.cn/20200525105230114.png" alt="在这里插入图片描述"></p>
+<h2 id="5-3-2-TCP-报文的首部格式"><a href="#5-3-2-TCP-报文的首部格式" class="headerlink" title="5.3.2 TCP 报文的首部格式"></a>5.3.2 TCP 报文的首部格式</h2><p>TCP协议是能够实现数据分段传输、可靠传输、流量控制、网络拥<br>塞避免等功能，因此TCP报文的首部要比UDP报文首部字段要多，<br>并且首部长度不固定。<br><img src="https://img-blog.csdnimg.cn/20200525105340519.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200525105356964.png" alt="在这里插入图片描述"></p>
+</li>
+<li><p>（1）源端口和目的端口各占2个字节，分别写入源端口号和目的<br>端口号。和前面图所示的UDP的分用相似，TCP的分用功能也是通<br>过端口实现的。</p>
+</li>
+<li><p>（2）序号占4字节。序号范围是[0，232-1]，共232（即4 294 967 296）个序号。序号增加到232-1后，下一个序号就又回到0。TCP<br>是面向字节流的。在一个TCP连接中传送的字节流中的每一个字节<br>都按顺序编号</p>
+</li>
+<li><p>（3）确认号 占4字节，是期望收到对方下一个报文段的第一个数据字节的序号。</p>
+<ul>
+<li>TCP协议能够实现可靠传输，接收方收到几个数据包后，就会给发送方一个确认数据包，告诉发送方下一个数据包该发第多少个字节了。</li>
+<li>若确认号是N，则表明：到序号N-1为止的所有数据都已正确收到。</li>
+</ul>
+</li>
+<li><p>（4）数据偏移 占4位，它指出TCP报文段的数据起始处距离TCP报文段的起始处有多远。这个字段实际上是指出TCP报文段的首部长度。由于首部中还有长度不确定的选项字段，因此数据偏移字段是必要的。但请注意，“数据偏移”的单位为4字节，由于4位二进制数能够表示的最大十进制数字是15，因此数据偏移的最大值是60字节，这也是TCP首部的最大长度，这也就意味着选项长度不能超过40字节。</p>
+</li>
+<li><p>（6）保留 占6位，保留为今后使用，但目前应置为0。</p>
+</li>
+<li><p>（7）紧急URG（URGent） 当URG=l时，表明紧急指针字段有效。它告诉系统此报文段中有紧急数据，应尽快传送（相当于高优先级的数据），而不要按原来的排队顺序来传送。</p>
+</li>
+<li><p>（8）确认ACK（ACKnowlegment） 仅当ACK=1时确认号字段才有效。当ACK=0时，确认号无效。TCP规定，在连接建立后所有传送的报文段都必须把ACK置1。‘</p>
+</li>
+</ul>
+<ul>
+<li><p>（9）推送PSH（PuSH） 当两个应用进程进行交互式的通信时，有时在一端的应用进程希望在键入一个命令后立即就能够收到对方的响应。</p>
+</li>
+<li><p>（10）复位RST（ReSeT） 当RST=l时，表明TCP连接中出现严重差错（如由于主机崩溃或其他原因），必须释放连接，然后再重新建立运输连接。</p>
+</li>
+<li><p>（11）同步SYN（SYNchronization） 在连接建立时用来同步序号。当SYN=1而ACK=0时，表明这是一个连接请求报文段。对方若同意建立连接，则应在响应的报文段中使SYN=1和ACK=1。因此，SYN置为1就表示这是一个连接请求或连接接受报文。</p>
+</li>
+<li><p>（12）终止FIN（FINish意思是“完”、“终”） 用来释放一个连接。当FIN=1时，表明此报文段的发送方的数据己发送完毕，并要求释放传输连接。</p>
+</li>
+<li><p>（13）窗口 占2字节。窗口值是[0，216-1]之间的整数。TCP协议有流量<br>控制功能，窗口值告诉对方：从本报文段首部中的确认号算起，接收方<br>目前允许对方发送的数据量（单位是字节）。</p>
+</li>
+</ul>
+<ul>
+<li><p>（14）检验和 占2字节。检验和字段检验的范围包括首部和数据这两部分。和UDP用户数据报一样，在计算检验和时，要在TCP报文段的前面加上12字节的伪首部。</p>
+</li>
+<li><p>（15）紧急指针 占2字节。紧急指针仅在URG=1时才有意义，它指出本<br>报文段中的紧急数据的字节数（紧急数据结束后就是普通数据）。因此<br>紧急指针指出了紧急数据的末尾在报文段中的位置。</p>
+</li>
+<li><p>（16）选项 长度可变，最长可达40个字节。当没有使用选项时，TCP的<br>首部长度是20字节。TCP最初只规定了一种选项，即最大报文段长度MSS（Maximum Segment Size）。</p>
+<h1 id="5-4-可靠传输"><a href="#5-4-可靠传输" class="headerlink" title="5.4 可靠传输"></a>5.4 可靠传输</h1><h2 id="5-4-1-TCP可靠传输的实现-停止等待协议"><a href="#5-4-1-TCP可靠传输的实现-停止等待协议" class="headerlink" title="5.4.1 TCP可靠传输的实现-停止等待协议"></a>5.4.1 TCP可靠传输的实现-停止等待协议</h2><p><img src="https://img-blog.csdnimg.cn/20200525165003185.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200525165018799.png" alt="在这里插入图片描述"></p>
+</li>
+</ul>
+<h2 id="5-4-2-连续-ARQ-协议和互动窗口协议-改进的停止等待协议"><a href="#5-4-2-连续-ARQ-协议和互动窗口协议-改进的停止等待协议" class="headerlink" title="5.4.2 连续 ARQ 协议和互动窗口协议-改进的停止等待协议"></a>5.4.2 连续 ARQ 协议和互动窗口协议-改进的停止等待协议</h2><p><img src="https://img-blog.csdnimg.cn/20200525165106937.png" alt="在这里插入图片描述"></p>
+<h2 id="5-4-3以字节为单位的滑动窗口技术详解"><a href="#5-4-3以字节为单位的滑动窗口技术详解" class="headerlink" title="5.4.3以字节为单位的滑动窗口技术详解"></a>5.4.3以字节为单位的滑动窗口技术详解</h2><p>滑动窗口是面向字节流的，为了方便大家记住每个分组的序号，下面的讲解每一个分组就假设100个字节，为了方便画图表示，将分组进行编号简化表示，如图所示，不过你要记住，每一个分组的序号是多少。<br><img src="https://img-blog.csdnimg.cn/20200525165244265.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200525165305352.png" alt="在这里插入图片描述"></p>
+<h2 id="5-4-4改进的确认-选择确认（SACK）"><a href="#5-4-4改进的确认-选择确认（SACK）" class="headerlink" title="5.4.4改进的确认-选择确认（SACK）"></a>5.4.4改进的确认-选择确认（SACK）</h2><ul>
+<li><p>TCP通信时，如果发送序列中间某个数据包丢失，TCP会通过重传最后确认的分组后续的分组，这样原先已经正确传输的分组也可能重复发送，降低了TCP性能。为改善这种情况，发展出SACK（Selective Acknowledgment，选择确认）技术，使TCP只重新发送丢失的包，不用发送后续所有的分组，而且提供相应机制使接收方能告诉发送方哪些数据丢失，哪些数据已经提前收到等。<br><img src="https://img-blog.csdnimg.cn/20200525165518171.png" alt="在这里插入图片描述"></p>
+</li>
+<li><p><strong>选择性确认最多表示4个边界</strong><br><img src="https://img-blog.csdnimg.cn/2020052516591063.png" alt="在这里插入图片描述"></p>
+</li>
+</ul>
+<h2 id="5-4-5超时重传的时间调整"><a href="#5-4-5超时重传的时间调整" class="headerlink" title="5.4.5超时重传的时间调整"></a>5.4.5超时重传的时间调整</h2><ul>
+<li><p>TCP的发送方在规定的时间内没有收到确认就要重传己发送的报文段。这种重 传的概念是很简单的，但重传时间的选择却是TCP最复杂的问题之一。</p>
+</li>
+<li><p>传输层的超时计时器的超时重传时间究竟应设置为多大呢？TCP往返传输时间 （RTT） 的测量可以采用两种方法：</p>
+</li>
+<li><p>TCP Timestamp选项</p>
+<ul>
+<li>TCP时间戳选项可以用来精确的测量RTT。发送方在发送报文段时把当前时钟的时间值放 入时间戳字段，接收方在确认该报文段时把时间戳字段值复制到时间戳回送回答字段。 因此，发送方在收到确认报文后，可以准确地计算出RTT来。RTT=当前时间-数据包中 Timestamp选项的回显时间。</li>
+</ul>
+</li>
+<li><p>重传队列中数据包的TCP控制块</p>
+<ul>
+<li>在TCP发送窗口中保存着发送而未被确认的数据包，数据包skb中的TCP控制块包含着一 个变量， tcp_skb_cbwhen，记录了该数据包的第一次发送时间，当收到该数据包确认， 就可以计算RTT，RTT=当前时间-when。这就意味着发送端收到一个确认，就能计算新 的RTT</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20200525165946331.png" alt="在这里插入图片描述"></p>
+<ul>
+<li><p><strong>RTT调整</strong><br><img src="https://img-blog.csdnimg.cn/20200525170054223.png" alt="在这里插入图片描述"><br>.</p>
+</li>
+<li><p><strong>超市计时器设置的超时重传时间RTO</strong></p>
+</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20200525170112228.png" alt="在这里插入图片描述"></p>
+<h1 id="5-5-流量控制"><a href="#5-5-流量控制" class="headerlink" title="5.5 流量控制"></a>5.5 流量控制</h1><h1 id="5-6-拥塞控制"><a href="#5-6-拥塞控制" class="headerlink" title="5.6 拥塞控制"></a>5.6 拥塞控制</h1><p><img src="https://img-blog.csdnimg.cn/20200601114918410.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200601114945842.png" alt="在这里插入图片描述"></p>
+<h2 id="5-6-1拥塞控制的原理"><a href="#5-6-1拥塞控制的原理" class="headerlink" title="5.6.1拥塞控制的原理"></a>5.6.1拥塞控制的原理</h2><p><img src="https://img-blog.csdnimg.cn/20200601124333321.png" alt="在这里插入图片描述"></p>
+<h2 id="5-6-2拥塞控制方法-慢开始和拥塞避免"><a href="#5-6-2拥塞控制方法-慢开始和拥塞避免" class="headerlink" title="5.6.2拥塞控制方法-慢开始和拥塞避免"></a>5.6.2拥塞控制方法-慢开始和拥塞避免</h2><p><img src="https://img-blog.csdnimg.cn/2020060112443080.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200601124445332.png" alt="在这里插入图片描述"></p>
+<h2 id="5-6-3拥塞控制方法-快重传和快恢复"><a href="#5-6-3拥塞控制方法-快重传和快恢复" class="headerlink" title="5.6.3拥塞控制方法-快重传和快恢复"></a>5.6.3拥塞控制方法-快重传和快恢复</h2><p><img src="https://img-blog.csdnimg.cn/20200601124505100.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200601124522184.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200601124536263.png" alt="在这里插入图片描述"></p>
+<h2 id="5-6-4发送窗口的上限"><a href="#5-6-4发送窗口的上限" class="headerlink" title="5.6.4发送窗口的上限"></a>5.6.4发送窗口的上限</h2><p><img src="https://img-blog.csdnimg.cn/20200601124549796.png" alt="在这里插入图片描述"></p>
+<h1 id="5-7-TCP连接管理"><a href="#5-7-TCP连接管理" class="headerlink" title="5.7 TCP连接管理"></a>5.7 TCP连接管理</h1><h2 id="5-7-1-TCP的连接建立"><a href="#5-7-1-TCP的连接建立" class="headerlink" title="5.7.1 TCP的连接建立"></a>5.7.1 TCP的连接建立</h2><ul>
+<li>请求建立TCP连接的数据包<br><img src="https://img-blog.csdnimg.cn/20200601124605622.png" alt="在这里插入图片描述"></li>
+<li>TCP连接建立的数据包<img src="https://img-blog.csdnimg.cn/20200601124618787.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0xlZVFpYW5nODAyMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>确认的确认<br><img src="https://img-blog.csdnimg.cn/20200601124830410.png" alt="在这里插入图片描述"></li>
+<li>TCP连接建立的过程<br><img src="https://img-blog.csdnimg.cn/20200601124934854.png" alt="在这里插入图片描述"></li>
+</ul>
+<h2 id="5-7-2-TCP连接释放"><a href="#5-7-2-TCP连接释放" class="headerlink" title="5.7.2 TCP连接释放"></a>5.7.2 TCP连接释放</h2><p><img src="https://img-blog.csdnimg.cn/20200601124948472.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200601125017273.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>查看TCP连接释放的数据包<br><img src="https://img-blog.csdnimg.cn/20200601125112798.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200601125125583.png" alt="在这里插入图片描述"></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">JhonnyLee</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://blog.jhonnylee.com/2020/12/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0%20%20%E7%B2%BE%E6%95%B4%E7%90%86%20%20%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E4%BC%A0%E8%BE%93%E5%B1%82/">http://blog.jhonnylee.com/2020/12/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0%20%20%E7%B2%BE%E6%95%B4%E7%90%86%20%20%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E4%BC%A0%E8%BE%93%E5%B1%82/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://blog.jhonnylee.com" target="_blank">JhonnyLee</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2020/12/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0%20%E7%B2%BE%E6%95%B4%E7%90%86%20%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E5%BA%94%E7%94%A8%E5%B1%82/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info"></div></div></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">JhonnyLee</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/JhonnyLee01"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/JhonnyLee01" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is JhonnyLee Blog</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#5-1%E4%BC%A0%E8%BE%93%E5%B1%82%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.</span> <span class="toc-text">5.1传输层的两个协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-1-TCP%E5%92%8CUDP%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">5.1.1 TCP和UDP的应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-2-%E4%BC%A0%E8%BE%93%E5%B1%82%E5%8D%8F%E8%AE%AE%E5%92%8C%E5%BA%94%E7%94%A8%E5%B1%82%E5%8D%8F%E8%AE%AE%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.2.</span> <span class="toc-text">5.1.2 传输层协议和应用层协议之间的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-3-%E6%9C%8D%E5%8A%A1%E5%92%8C%E7%AB%AF%E5%8F%A3%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.3.</span> <span class="toc-text">5.1.3 服务和端口之间的关系</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-2-%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E6%8A%A5%E5%8D%8F%E8%AE%AE-UDP"><span class="toc-number">2.</span> <span class="toc-text">5.2 用户数据报协议 UDP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-1-UDP-%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">2.1.</span> <span class="toc-text">5.2.1 UDP 协议的特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-2-UDP-%E7%9A%84%E9%A6%96%E9%83%A8%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.2.</span> <span class="toc-text">5.2.2 UDP 的首部格式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-3%E4%BC%A0%E8%BE%93%E6%8E%A7%E5%88%B6%E5%8D%8F%E8%AE%AE-TCP"><span class="toc-number">3.</span> <span class="toc-text">5.3传输控制协议 TCP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-1-TCP-%E5%8D%8F%E8%AE%AE%E4%B8%BB%E8%A6%81%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">3.1.</span> <span class="toc-text">5.3.1 TCP 协议主要的特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-2-TCP-%E6%8A%A5%E6%96%87%E7%9A%84%E9%A6%96%E9%83%A8%E6%A0%BC%E5%BC%8F"><span class="toc-number">3.2.</span> <span class="toc-text">5.3.2 TCP 报文的首部格式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-4-%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93"><span class="toc-number">4.</span> <span class="toc-text">5.4 可靠传输</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-1-TCP%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93%E7%9A%84%E5%AE%9E%E7%8E%B0-%E5%81%9C%E6%AD%A2%E7%AD%89%E5%BE%85%E5%8D%8F%E8%AE%AE"><span class="toc-number">4.1.</span> <span class="toc-text">5.4.1 TCP可靠传输的实现-停止等待协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-2-%E8%BF%9E%E7%BB%AD-ARQ-%E5%8D%8F%E8%AE%AE%E5%92%8C%E4%BA%92%E5%8A%A8%E7%AA%97%E5%8F%A3%E5%8D%8F%E8%AE%AE-%E6%94%B9%E8%BF%9B%E7%9A%84%E5%81%9C%E6%AD%A2%E7%AD%89%E5%BE%85%E5%8D%8F%E8%AE%AE"><span class="toc-number">4.2.</span> <span class="toc-text">5.4.2 连续 ARQ 协议和互动窗口协议-改进的停止等待协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-3%E4%BB%A5%E5%AD%97%E8%8A%82%E4%B8%BA%E5%8D%95%E4%BD%8D%E7%9A%84%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%8A%80%E6%9C%AF%E8%AF%A6%E8%A7%A3"><span class="toc-number">4.3.</span> <span class="toc-text">5.4.3以字节为单位的滑动窗口技术详解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-4%E6%94%B9%E8%BF%9B%E7%9A%84%E7%A1%AE%E8%AE%A4-%E9%80%89%E6%8B%A9%E7%A1%AE%E8%AE%A4%EF%BC%88SACK%EF%BC%89"><span class="toc-number">4.4.</span> <span class="toc-text">5.4.4改进的确认-选择确认（SACK）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-5%E8%B6%85%E6%97%B6%E9%87%8D%E4%BC%A0%E7%9A%84%E6%97%B6%E9%97%B4%E8%B0%83%E6%95%B4"><span class="toc-number">4.5.</span> <span class="toc-text">5.4.5超时重传的时间调整</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-5-%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6"><span class="toc-number">5.</span> <span class="toc-text">5.5 流量控制</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-6-%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6"><span class="toc-number">6.</span> <span class="toc-text">5.6 拥塞控制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-6-1%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">6.1.</span> <span class="toc-text">5.6.1拥塞控制的原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-6-2%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E6%96%B9%E6%B3%95-%E6%85%A2%E5%BC%80%E5%A7%8B%E5%92%8C%E6%8B%A5%E5%A1%9E%E9%81%BF%E5%85%8D"><span class="toc-number">6.2.</span> <span class="toc-text">5.6.2拥塞控制方法-慢开始和拥塞避免</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-6-3%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E6%96%B9%E6%B3%95-%E5%BF%AB%E9%87%8D%E4%BC%A0%E5%92%8C%E5%BF%AB%E6%81%A2%E5%A4%8D"><span class="toc-number">6.3.</span> <span class="toc-text">5.6.3拥塞控制方法-快重传和快恢复</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-6-4%E5%8F%91%E9%80%81%E7%AA%97%E5%8F%A3%E7%9A%84%E4%B8%8A%E9%99%90"><span class="toc-number">6.4.</span> <span class="toc-text">5.6.4发送窗口的上限</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-7-TCP%E8%BF%9E%E6%8E%A5%E7%AE%A1%E7%90%86"><span class="toc-number">7.</span> <span class="toc-text">5.7 TCP连接管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-7-1-TCP%E7%9A%84%E8%BF%9E%E6%8E%A5%E5%BB%BA%E7%AB%8B"><span class="toc-number">7.1.</span> <span class="toc-text">5.7.1 TCP的连接建立</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-7-2-TCP%E8%BF%9E%E6%8E%A5%E9%87%8A%E6%94%BE"><span class="toc-number">7.2.</span> <span class="toc-text">5.7.2 TCP连接释放</span></a></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2020/12/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0%20%20%E7%B2%BE%E6%95%B4%E7%90%86%20%20%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E4%BC%A0%E8%BE%93%E5%B1%82/" title="无题"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2020/12/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0%20%20%E7%B2%BE%E6%95%B4%E7%90%86%20%20%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E4%BC%A0%E8%BE%93%E5%B1%82/" title="无题">无题</a><time datetime="2020-12-19T00:22:11.705Z" title="发表于 2020-12-19 08:22:11">2020-12-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0%20%E7%B2%BE%E6%95%B4%E7%90%86%20%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E5%BA%94%E7%94%A8%E5%B1%82/" title="无题"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2020/12/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0%20%E7%B2%BE%E6%95%B4%E7%90%86%20%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E5%BA%94%E7%94%A8%E5%B1%82/" title="无题">无题</a><time datetime="2020-12-19T00:22:09.690Z" title="发表于 2020-12-19 08:22:09">2020-12-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0%E7%B2%BE%E6%95%B4%E7%90%86%20%E7%AC%AC%E5%9B%9B%E7%AB%A0%20%E7%BD%91%E7%BB%9C%E5%B1%82/" title="无题"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2020/12/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0%E7%B2%BE%E6%95%B4%E7%90%86%20%E7%AC%AC%E5%9B%9B%E7%AB%A0%20%E7%BD%91%E7%BB%9C%E5%B1%82/" title="无题">无题</a><time datetime="2020-12-19T00:22:09.679Z" title="发表于 2020-12-19 08:22:09">2020-12-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/19/IP%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E3%80%8A%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81%E8%AF%A6%E8%A7%A3%E3%80%8B/" title="无题"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2020/12/19/IP%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E3%80%8A%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81%E8%AF%A6%E8%A7%A3%E3%80%8B/" title="无题">无题</a><time datetime="2020-12-19T00:22:04.885Z" title="发表于 2020-12-19 08:22:04">2020-12-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/19/IP%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E3%80%8A%E8%B6%85%E7%BD%91%E5%90%88%E5%B9%B6%E8%AF%A6%E8%A7%A3%E3%80%8B/" title="无题"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2020/12/19/IP%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E3%80%8A%E8%B6%85%E7%BD%91%E5%90%88%E5%B9%B6%E8%AF%A6%E8%A7%A3%E3%80%8B/" title="无题">无题</a><time datetime="2020-12-19T00:22:04.883Z" title="发表于 2020-12-19 08:22:04">2020-12-19</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 By JhonnyLee</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a href="https://blog.jhonnylee.com">JhonnyLee</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script></div></body></html>
